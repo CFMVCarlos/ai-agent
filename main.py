@@ -5,6 +5,8 @@ from dotenv import load_dotenv
 from openai import OpenAI
 from openai.types.chat import ChatCompletionMessageParam
 
+from prompts import system_prompt
+
 
 def main(args: argparse.Namespace) -> None:
     load_dotenv()
@@ -18,6 +20,7 @@ def main(args: argparse.Namespace) -> None:
     )
 
     messages: list[ChatCompletionMessageParam] = [
+        {"role": "system", "content": system_prompt},
         {"role": "user", "content": args.user_prompt},
     ]
 
