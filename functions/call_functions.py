@@ -33,6 +33,20 @@ function_map: dict[str, Callable[..., str]] = {
 def call_function(
     tool_call: ChatCompletionMessageToolCallUnion, verbose: bool = False
 ) -> ChatCompletionToolMessageParam:
+    """Dispatch and execute an LLM tool call against registered functions.
+
+    Parameters
+    ----------
+    tool_call : ChatCompletionMessageToolCallUnion
+        The tool call payload received from the chat completion response.
+    verbose : bool
+        Whether to print diagnostic tool invocation details, by default False.
+
+    Returns
+    -------
+    ChatCompletionToolMessageParam
+        Tool response message dict containing the execution output.
+    """
     if isinstance(tool_call, ChatCompletionMessageCustomToolCall):
         return {
             "role": "tool",

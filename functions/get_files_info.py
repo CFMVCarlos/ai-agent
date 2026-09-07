@@ -4,6 +4,22 @@ from openai.types.chat import ChatCompletionToolParam
 
 
 def get_files_info(working_directory: str, directory: str = ".") -> str:
+    """List file and directory information within a bounded working directory.
+
+    Parameters
+    ----------
+    working_directory : str
+        The base directory path restricting permitted file access.
+    directory : str
+        Target directory to inspect, relative to the working directory,
+        by default ".".
+
+    Returns
+    -------
+    str
+        Formatted string listing file sizes and directory flags, or an
+        error message if access fails.
+    """
     try:
         working_dir_abs = os.path.abspath(working_directory)
         target_dir = os.path.normpath(os.path.join(working_dir_abs, directory))
