@@ -4,6 +4,22 @@ import json
 
 
 def format_json_output(expression: str, result: float, indent: int = 2) -> str:
+    """Format an expression and its calculated result as a JSON string.
+
+    Parameters
+    ----------
+    expression : str
+        The mathematical expression evaluated.
+    result : float
+        The numerical result of the expression.
+    indent : int
+        JSON indentation spaces, by default 2.
+
+    Returns
+    -------
+    str
+        Indented JSON string with expression and integer/float result.
+    """
     if isinstance(result, float) and result.is_integer():
         result_to_dump = int(result)
     else:

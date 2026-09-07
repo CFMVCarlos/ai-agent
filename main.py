@@ -12,6 +12,18 @@ from prompts import system_prompt
 
 
 def main(args: argparse.Namespace) -> None:
+    """Run the AI agent conversation and tool-calling evaluation loop.
+
+    Parameters
+    ----------
+    args : argparse.Namespace
+        Parsed CLI arguments containing user prompt and verbose options.
+
+    Raises
+    ------
+    RuntimeError
+        If OPENROUTER_API_KEY is not set or API usage data is missing.
+    """
     load_dotenv()
     api_key = os.environ.get("OPENROUTER_API_KEY")
     if not api_key:

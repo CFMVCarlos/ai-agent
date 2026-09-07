@@ -7,6 +7,7 @@ from pkg.render import format_json_output
 
 
 def main() -> None:
+    """Execute the calculator CLI application evaluating user input."""
     calculator = Calculator()
     if len(sys.argv) <= 1:
         print("Calculator App")

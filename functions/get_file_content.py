@@ -6,6 +6,20 @@ from config import MAX_CHARS
 
 
 def get_file_content(working_directory: str, file_path: str) -> str:
+    """Read file content bounded by the permitted working directory.
+
+    Parameters
+    ----------
+    working_directory : str
+        The base directory path restricting permitted file access.
+    file_path : str
+        Path to the target file, relative to the working directory.
+
+    Returns
+    -------
+    str
+        File contents as text up to MAX_CHARS, or an error message.
+    """
     try:
         working_dir_abs = os.path.abspath(working_directory)
         target_file = os.path.normpath(os.path.join(working_dir_abs, file_path))

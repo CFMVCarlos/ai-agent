@@ -4,6 +4,22 @@ from openai.types.chat import ChatCompletionToolParam
 
 
 def write_file(working_directory: str, file_path: str, content: str) -> str:
+    """Write text content to a target file within the working directory.
+
+    Parameters
+    ----------
+    working_directory : str
+        The base directory path restricting permitted file access.
+    file_path : str
+        Path to the destination file, relative to working directory.
+    content : str
+        Text content to write into the file.
+
+    Returns
+    -------
+    str
+        Confirmation message with character count, or an error message.
+    """
     try:
         working_dir_abs = os.path.abspath(working_directory)
         target_file = os.path.normpath(os.path.join(working_dir_abs, file_path))

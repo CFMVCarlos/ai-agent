@@ -7,6 +7,22 @@ from openai.types.chat import ChatCompletionToolParam
 def run_python_file(
     working_directory: str, file_path: str, args: list[str] | None = None
 ) -> str:
+    """Execute a Python file in a subprocess within the working directory.
+
+    Parameters
+    ----------
+    working_directory : str
+        The base directory path restricting permitted file access.
+    file_path : str
+        Path to the Python file to run, relative to working directory.
+    args : list[str] | None
+        Optional arguments passed to the script, by default None.
+
+    Returns
+    -------
+    str
+        Combined standard output and error streams, or an error message.
+    """
     try:
         working_dir_abs = os.path.abspath(working_directory)
         target_file = os.path.normpath(os.path.join(working_dir_abs, file_path))
