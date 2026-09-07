@@ -1,10 +1,13 @@
 import argparse
 import os
+import sys
+from typing import cast
 
 from dotenv import load_dotenv
 from openai import OpenAI
 from openai.types.chat import ChatCompletionMessageParam
 
+from functions.call_functions import available_functions, call_function
 from prompts import system_prompt
 
 
@@ -24,18 +27,34 @@ def main(args: argparse.Namespace) -> None:
         {"role": "user", "content": args.user_prompt},
     ]
 
-    response = client.chat.completions.create(
-        model="openrouter/free",
-        messages=messages,
-    )
-    if args.verbose:
-        print(f"User prompt: {args.user_prompt}")
-        if response.usage:
-            print(f"Prompt tokens: {response.usage.prompt_tokens}")
-            print(f"Response tokens: {response.usage.completion_tokens}")
+    for _ in range(20):
+        response = client.chat.completions.create(
+            model="openrouter/free",
+            messages=messages,
+            tools=available_functions,
+        )
+
+        if args.verbose:
+            print(f"User prompt: {args.user_prompt}")
+            if response.usage:
+                print(f"Prompt tokens: {response.usage.prompt_tokens}")
+                print(f"Response tokens: {response.usage.completion_tokens}")
+            else:
+                raise RuntimeError("No usage information returned from the API.")
+
+        message = response.choices[0].message
+        messages.append(cast(ChatCompletionMessageParam, message))
+
+        if message.tool_calls:
+            for tool_call in message.tool_calls:
+                result_message = call_function(tool_call, args.verbose)
+                messages.append(result_message)
         else:
-            raise RuntimeError("No usage information returned from the API.")
-    print(response.choices[0].message.content)
+            print(message.content)
+            break
+    else:
+        print("Reached maximum number of iterations without a final response.")
+        sys.exit(1)
 
 
 if __name__ == "__main__":
