@@ -1,5 +1,7 @@
 import os
 
+from openai.types.chat import ChatCompletionToolParam
+
 
 def write_file(working_directory: str, file_path: str, content: str) -> str:
     try:
@@ -24,3 +26,26 @@ def write_file(working_directory: str, file_path: str, content: str) -> str:
         )
     except Exception as e:  # noqa: BLE001
         return f"Error: {e}"
+
+
+schema_write_file: ChatCompletionToolParam = {
+    "type": "function",
+    "function": {
+        "name": "write_file",
+        "description": "Writes or overwrites content to a specified file relative to the working directory",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "file_path": {
+                    "type": "string",
+                    "description": "Path to the file to write to, relative to the working directory",
+                },
+                "content": {
+                    "type": "string",
+                    "description": "The text content to write to the file",
+                },
+            },
+            "required": ["file_path", "content"],
+        },
+    },
+}
