@@ -11,14 +11,20 @@ class Calculator:
             "+": lambda a, b: a + b,
             "-": lambda a, b: a - b,
             "*": lambda a, b: a * b,
-            "/": lambda a, b: a / b,
+            "/": self._safe_divide,
         }
+
         self.precedence: dict[str, int] = {
             "+": 1,
             "-": 1,
             "*": 2,
             "/": 2,
         }
+
+    def _safe_divide(self, a: float, b: float) -> float:
+        if b == 0:
+            raise ValueError("division by zero")
+        return a / b
 
     def evaluate(self, expression: str) -> float | None:
         """Evaluate an infix arithmetic expression string.

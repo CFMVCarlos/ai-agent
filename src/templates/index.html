@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Agent Interface</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#3b82f6', // blue-500
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Toast Notifications CSS (Toastify) -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    
+    <!-- Custom Styles for interactions -->
+    <style>
+        .loader {
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #3b82f6;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.3s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
+</head>
+<body class="bg-zinc-50 text-slate-800 font-sans min-h-screen flex flex-col items-center py-10 px-4 transition-colors duration-300">
+
+    <div class="max-w-3xl w-full bg-white shadow-xl shadow-slate-200/50 rounded-2xl p-8 border border-slate-100 fade-in">
+        
+        <div class="text-center mb-8">
+            <h1 class="text-3xl font-extrabold text-slate-900 tracking-tight flex items-center justify-center gap-3">
+                <span class="text-primary text-4xl">🤖</span> AI Agent Interface
+            </h1>
+            <p class="text-slate-500 mt-2 text-sm">Autonomous multi-turn assistant with tool-calling capabilities.</p>
+        </div>
+
+        <!-- Agent Form -->
+        <form id="agentForm" class="space-y-6">
+            <div class="relative">
+                <label for="prompt" class="block text-sm font-semibold text-slate-700 mb-1">Your Prompt</label>
+                <textarea 
+                    id="prompt" 
+                    name="prompt" 
+                    rows="4" 
+                    class="w-full px-4 py-3 rounded-xl border border-slate-300 bg-slate-50 text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all duration-200 shadow-sm resize-none"
+                    placeholder="e.g., Inspect the files in the calculator directory and list all tests..."
+                    required></textarea>
+                <p id="promptError" class="text-red-500 text-xs font-medium mt-1 hidden">Prompt is required.</p>
+            </div>
+
+            <div class="flex items-center gap-3">
+                <input 
+                    type="checkbox" 
+                    id="verbose" 
+                    name="verbose" 
+                    class="w-5 h-5 text-primary bg-slate-100 border-slate-300 rounded focus:ring-primary focus:ring-2 transition-all cursor-pointer">
+                <label for="verbose" class="text-sm font-medium text-slate-600 cursor-pointer select-none">Enable verbose output</label>
+            </div>
+
+            <button 
+                type="submit" 
+                id="submitBtn" 
+                class="w-full bg-primary hover:bg-blue-600 text-white font-semibold py-3 px-6 rounded-xl shadow-md shadow-primary/30 transform hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200 flex justify-center items-center gap-2">
+                <span id="btnText">Run Agent</span>
+                <div id="btnLoader" class="loader hidden"></div>
+            </button>
+        </form>
+
+        <!-- Response Area -->
+        <div id="responseArea" class="mt-8 hidden">
+            <h2 class="text-sm font-bold text-slate-700 mb-2 uppercase tracking-wide">Agent Output</h2>
+            <div class="bg-slate-900 rounded-xl p-5 shadow-inner border border-slate-800 overflow-hidden relative">
+                <pre id="responseText" class="text-slate-300 text-sm font-mono whitespace-pre-wrap leading-relaxed max-h-96 overflow-y-auto w-full break-words"></pre>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notifications JS -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <script src="/static/js/app.js"></script>
+</body>
+</html>
