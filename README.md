@@ -69,6 +69,11 @@ aiagent/
 │   ├── get_files_info.py        # Directory listing utility & schema
 │   ├── run_python_file.py       # Sandboxed script runner & schema
 │   └── write_file.py            # Bounded file writing utility & schema
+├── tests/                       # Automated test suite
+│   ├── test_get_file_content.py # Tests for get_file_content
+│   ├── test_get_files_info.py   # Tests for get_files_info
+│   ├── test_run_python_file.py  # Tests for run_python_file
+│   └── test_write_file.py       # Tests for write_file
 ├── config.py                    # Global constants (e.g., MAX_CHARS)
 ├── main.py                      # Main chatbot CLI & multi-turn execution loop
 ├── prompts.py                   # System prompt definitions and behavioral rules
@@ -123,6 +128,9 @@ uv run main.py "Run the calculator tests and fix any failing test cases" --verbo
 This project adheres to strict quality standards enforced via `uv`:
 
 ```bash
+# Run automated test suite
+uv run pytest
+
 # Lint code and apply automatic fixes
 uv run ruff check --fix
 
