@@ -1,3 +1,5 @@
+"""Calculator entry point CLI script for testing expression evaluation."""
+
 # calculator/main.py
 
 import sys

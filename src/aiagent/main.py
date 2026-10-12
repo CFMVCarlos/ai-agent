@@ -1,3 +1,5 @@
+"""Main entry point CLI loop for interactive OpenAI assistant agent."""
+
 import argparse
 import os
 import sys

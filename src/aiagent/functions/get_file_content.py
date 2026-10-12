@@ -1,3 +1,5 @@
+"""Tool function for retrieving bounded text content from files."""
+
 import os
 
 from openai.types.chat import ChatCompletionToolParam

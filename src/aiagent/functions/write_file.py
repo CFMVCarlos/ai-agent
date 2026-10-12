@@ -1,3 +1,5 @@
+"""Tool function for writing generated code and text to files."""
+
 import os
 
 from openai.types.chat import ChatCompletionToolParam

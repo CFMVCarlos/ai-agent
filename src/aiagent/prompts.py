@@ -1,3 +1,5 @@
+"""System prompts and instruction templates for AI Agent interactions."""
+
 system_prompt = """
 You are a helpful AI coding agent.
 

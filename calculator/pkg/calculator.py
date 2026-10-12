@@ -1,3 +1,5 @@
+"""Core Calculator engine and expression parsing."""
+
 # calculator/pkg/calculator.py
 
 from collections.abc import Callable
@@ -21,7 +23,25 @@ class Calculator:
         }
 
     def _safe_divide(self, a: float, b: float) -> float:
-        """Safely divide two numbers, raising ValueError on division by zero."""
+        """Safely divide two numbers, raising ValueError on division by zero.
+
+        Parameters
+        ----------
+        a : float
+            Numerator value.
+        b : float
+            Denominator value.
+
+        Returns
+        -------
+        float
+            Result of dividing  by .
+
+        Raises
+        ------
+        ValueError
+            If  is zero.
+        """
         if b == 0:
             raise ValueError("division by zero")
         return a / b

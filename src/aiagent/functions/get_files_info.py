@@ -1,3 +1,5 @@
+"""Tool function for inspecting files and directory hierarchies."""
+
 import os
 
 from openai.types.chat import ChatCompletionToolParam
@@ -10,9 +12,8 @@ def get_files_info(working_directory: str, directory: str = ".") -> str:
     ----------
     working_directory : str
         The base directory path restricting permitted file access.
-    directory : str
-        Target directory to inspect, relative to the working directory,
-        by default ".".
+    directory : str, default="."
+        Target directory to inspect, relative to the working directory.
 
     Returns
     -------

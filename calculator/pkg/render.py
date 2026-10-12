@@ -1,3 +1,5 @@
+"""Output formatting helpers for JSON calculation results."""
+
 # calculator/pkg/render.py
 
 import json
@@ -12,8 +14,8 @@ def format_json_output(expression: str, result: float, indent: int = 2) -> str:
         The mathematical expression evaluated.
     result : float
         The numerical result of the expression.
-    indent : int
-        JSON indentation spaces, by default 2.
+    indent : int, default=2
+        JSON indentation spaces.
 
     Returns
     -------

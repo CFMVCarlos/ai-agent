@@ -153,3 +153,11 @@ uv run basedpyright
 
 - **Carlos Valente** ([@CFMVCarlos](https://github.com/CFMVCarlos))
 - Built as part of the **[Boot.dev](https://boot.dev)** AI Agent engineering curriculum.
+
+## Development
+
+To enable automated commit message validation with gitlint:
+```bash
+git config core.hooksPath .githooks
+```
+

@@ -1,3 +1,5 @@
+"""Tool registry dispatcher and execution handler for agent tool calls."""
+
 import json
 from collections.abc import Callable
 
@@ -39,8 +41,8 @@ def call_function(
     ----------
     tool_call : ChatCompletionMessageToolCallUnion
         The tool call payload received from the chat completion response.
-    verbose : bool
-        Whether to print diagnostic tool invocation details, by default False.
+    verbose : bool, default=False
+        Whether to print diagnostic tool invocation details.
 
     Returns
     -------

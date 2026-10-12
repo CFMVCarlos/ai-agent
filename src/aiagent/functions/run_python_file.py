@@ -1,3 +1,5 @@
+"""Tool function for sandboxed subprocess execution of Python scripts."""
+
 import os
 import subprocess
 
@@ -15,8 +17,8 @@ def run_python_file(
         The base directory path restricting permitted file access.
     file_path : str
         Path to the Python file to run, relative to working directory.
-    args : list[str] | None
-        Optional arguments passed to the script, by default None.
+    args : list[str] | None, default=None
+        Optional arguments passed to the script.
 
     Returns
     -------
