@@ -2,7 +2,7 @@ import os
 
 from openai.types.chat import ChatCompletionToolParam
 
-from config import MAX_CHARS
+from aiagent.config import MAX_CHARS
 
 
 def get_file_content(working_directory: str, file_path: str) -> str:

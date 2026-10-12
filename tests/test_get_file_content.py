@@ -1,6 +1,6 @@
 """Test suite for functions.get_file_content."""
 
-from functions.get_file_content import get_file_content
+from aiagent.functions.get_file_content import get_file_content
 
 
 def test_get_file_content_reads_existing_file() -> None:

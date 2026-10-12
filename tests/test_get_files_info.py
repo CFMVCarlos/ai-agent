@@ -1,6 +1,6 @@
 """Test suite for functions.get_files_info."""
 
-from functions.get_files_info import get_files_info
+from aiagent.functions.get_files_info import get_files_info
 
 
 def test_get_files_info_current_directory() -> None:

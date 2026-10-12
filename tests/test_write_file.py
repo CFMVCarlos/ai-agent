@@ -1,6 +1,6 @@
 """Test suite for functions.write_file."""
 
-from functions.write_file import write_file
+from aiagent.functions.write_file import write_file
 
 
 def test_write_file_outside_dir_blocked() -> None:
